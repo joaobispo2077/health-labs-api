@@ -1,1 +1,1 @@
-import "./config/moduleAliases";
+import './config/moduleAliases';
