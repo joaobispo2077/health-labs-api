@@ -12,7 +12,11 @@
     "lint:check": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
     "style:check": "prettier --check ./src/**/*.ts ./test/**/*.ts",
-    "style:fix": "prettier --write src/**/*.ts test/**/*.ts"
+    "style:fix": "prettier --write src/**/*.ts test/**/*.ts",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:verbose": "jest --passWithNoTests --runInBand",
+    "test:staged": "npm test -- --findRelatedTests",
+    "test:ci": "npm test -- --coverage"
   },
   "dependencies": {
     "module-alias": "^2.2.2"
