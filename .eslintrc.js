@@ -34,6 +34,7 @@ module.exports = {
     "no-empty-function": "off",
     "lines-between-class-members": "off",
     "import/no-named-as-default-member": "off",
+    "import/no-named-as-default": "off",
     "import/order": [
       "error",
       {

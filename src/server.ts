@@ -5,6 +5,7 @@ import express, { Application } from 'express';
 
 import { prisma } from './database/prisma';
 import { makeControllers } from './factories/makeControllers';
+import { logger } from './utils/logger';
 
 export class Server extends OvernightServer {
   constructor(private port = 3000) {
@@ -26,7 +27,7 @@ export class Server extends OvernightServer {
 
   public async turnOn(): Promise<void> {
     this.app.listen(this.port, () =>
-      console.info(`Server is listening in port: ${this.port}`),
+      logger.info(`Server is listening in port: ${this.port}`),
     );
   }
 
