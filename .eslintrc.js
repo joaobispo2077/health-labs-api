@@ -33,6 +33,7 @@ module.exports = {
     "no-useless-constructor": "off",
     "no-empty-function": "off",
     "lines-between-class-members": "off",
+    "import/no-named-as-default-member": "off",
     "import/order": [
       "error",
       {
