@@ -7,7 +7,12 @@
   "author": "João Bispo <joaobispo2077@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "commit:lint": "lint-staged"
+    "commit:lint": "lint-staged",
+    "lint": "yarn lint:check && yarn style:check ",
+    "lint:check": "eslint ./src ./test --ext .ts",
+    "lint:fix": "eslint ./src ./test --ext .ts --fix",
+    "style:check": "prettier --check ./src/**/*.ts ./test/**/*.ts",
+    "style:fix": "prettier --write src/**/*.ts test/**/*.ts"
   },
   "dependencies": {
     "module-alias": "^2.2.2"
