@@ -21,6 +21,12 @@ export class Server extends OvernightServer {
     this.setupErrorHandlers();
   }
 
+  private setupExpress(): void {
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(cors({ origin: '*' }));
+  }
+
   public getApp(): Application {
     return this.app;
   }
@@ -33,12 +39,6 @@ export class Server extends OvernightServer {
 
   public async turnOff(): Promise<void> {
     await prisma.$disconnect();
-  }
-
-  private setupExpress(): void {
-    this.app.use(express.json());
-    this.app.use(express.urlencoded({ extended: true }));
-    this.app.use(cors({ origin: '*' }));
   }
 
   private setupControllers(): void {
