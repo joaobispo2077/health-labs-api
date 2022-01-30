@@ -2,6 +2,7 @@
 import { Server as OvernightServer } from '@overnightjs/core';
 import cors from 'cors';
 import express, { Application } from 'express';
+import expressPino from 'express-pino-logger';
 
 import { prisma } from './database/prisma';
 import { makeControllers } from './factories/makeControllers';
@@ -24,6 +25,7 @@ export class Server extends OvernightServer {
   private setupExpress(): void {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(expressPino({ logger }));
     this.app.use(cors({ origin: '*' }));
   }
 
