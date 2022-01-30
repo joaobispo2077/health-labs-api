@@ -1,4 +1,5 @@
-version: '3.7'
+version: '3.9'
+
 
 services:
 
@@ -12,3 +13,21 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     ports:
       - "5432:5432"
+    volumes:
+      - pgdata:/data/postgres
+  app:
+    build: .
+    container_name: dasa-challenge-app
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+      - "9229:9229"
+    volumes:
+      - .:/usr/app
+    links:
+      - database
+    depends_on:
+      - database
+
+volumes:
+  pgdata:
+    driver: local
