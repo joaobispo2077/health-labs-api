@@ -6,9 +6,13 @@
   "repository": "https://github.com/joaobispo2077/dasa-challenge-api.git",
   "author": "João Bispo <joaobispo2077@gmail.com>",
   "license": "MIT",
+  "dependencies": {
+    "module-alias": "^2.2.2"
+  },
   "devDependencies": {
     "@commitlint/cli": "^16.1.0",
     "@commitlint/config-conventional": "^16.0.0",
+    "@types/module-alias": "^2.0.1",
     "husky": "^7.0.4",
     "jest": "^27.4.7",
     "ts-jest": "^27.1.3",
