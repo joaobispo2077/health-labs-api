@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+
+  database:
+    container_name: dasa-challenge-database
+    image: postgres:14.1-alpine
+    hostname: postgres
+    environment:
+      POSTGRES_DB: ${DATABASE_SCHEMA}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "5432:5432"
