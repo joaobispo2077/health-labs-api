@@ -1,6 +1,6 @@
+import { CreateLaboratoryDTO } from '@src/dtos/LaboratoriesDTOS';
 import { Laboratory } from '@src/entities/Laboratory';
 import { LaboratoriesRepositories } from '@src/repositories/LaboratoriesRepositories';
-import { CreateLaboratoryDTO } from '@src/services/LaboratoriesServices/dtos';
 import crypto from 'crypto';
 
 export class FakeLaboratoriesRepositories implements LaboratoriesRepositories {

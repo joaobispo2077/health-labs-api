@@ -1,5 +1,4 @@
-import { CreateLaboratoryDTO } from './dtos';
-
+import { CreateLaboratoryDTO } from '@src/dtos/LaboratoriesDTOS';
 import { Laboratory } from '@src/entities/Laboratory';
 import { LaboratoriesRepositories } from '@src/repositories/LaboratoriesRepositories';
 
