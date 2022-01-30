@@ -16,24 +16,24 @@ const listenUnhandledRejections: NodeJS.UnhandledRejectionListener = (
   promise,
 ) => {
   logger.error(
-    `App exiting due to an unhandle promise: ${promise} and error: ${error}`,
+    `Application exiting due to an unhandle promise: ${promise} and error: ${error}`,
   );
 
   throw error;
 };
 
 const listenUncaughtRejections: NodeJS.UncaughtExceptionListener = (error) => {
-  logger.error(`App exiting due to an uncaught exception: ${error}`);
+  logger.error(`Application exiting due to an uncaught exception: ${error}`);
   process.exit(ExitStatus.Failure);
 };
 
 const handleExitSignals = async (server: Server) => {
   try {
     await server.turnOff();
-    logger.info('App exited with success.');
+    logger.info('Application exited with success.');
     process.exit(ExitStatus.Success);
   } catch (err) {
-    logger.error(`App exited with error: ${err}`);
+    logger.error(`Application exited with error: ${err}`);
     process.exit(ExitStatus.Failure);
   }
 };
@@ -45,7 +45,7 @@ process.on('uncaughtException', listenUncaughtRejections);
 const main = async (): Promise<void> => {
   try {
     const server = new Server(port);
-    await server.init();
+    await server.initialize();
     await server.turnOn();
 
     const exitSignals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM', 'SIGQUIT'];

@@ -4,6 +4,7 @@ import { RequestHandler } from 'express';
 import { BaseController } from '.';
 
 import { LaboratoriesServices } from '@src/services/LaboratoriesServices';
+import { logger } from '@src/utils/logger';
 import { CreateLaboratoryValidator } from '@src/utils/validations/CreateLaboratoryValidator';
 
 @Controller('laboratories')
@@ -26,6 +27,7 @@ export class LaboratoriesControllers extends BaseController {
       status,
     });
 
+    logger.debug(`Laboratory created: ${newLaboratory.id}`);
     return response.status(201).json(newLaboratory);
   };
 }

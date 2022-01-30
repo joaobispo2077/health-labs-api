@@ -1,0 +1,58 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Documentação da API de laboratórios e exames",
+    "description": "Documentação do Desafio de API da DASA",
+    "version": "1.0.0",
+    "contact": {
+      "email": "joaobispo2077@gmail.com"
+    }
+  },
+  "paths": {
+    "/laboratories": {
+      "post": {
+        "tags": ["Laboratories"],
+        "summary": "Create a laboratory",
+        "description": "Create a new laboratory",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/LaboratoryInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "409": {
+            "description": "Laboratory already exists!"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "LaboratoryInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "name": "Laboratório Paulista",
+        "address": "Rua Paulista, 100",
+        "status": "ativo"
+      }
+    }
+  }
+}
