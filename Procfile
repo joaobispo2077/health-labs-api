@@ -1,1 +1,2 @@
-web: npm start
+web: yarn start
+release: yarn prod:db:migrate
