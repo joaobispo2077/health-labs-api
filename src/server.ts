@@ -6,8 +6,8 @@ import expressPino from 'express-pino-logger';
 import swaggerUI from 'swagger-ui-express';
 
 import packageJSON from '../package.json';
-import { prisma } from './database/prisma';
-import { makeControllers } from './factories/makeControllers';
+// import { prisma } from './database/prisma';
+// import { makeControllers } from './factories/makeControllers';
 import { handleErrorsMiddleware } from './middlewares/handleErrorsMiddleware';
 import swaggerFile from './swagger.json';
 import { logger } from './utils/logger';
@@ -56,7 +56,7 @@ export class Server extends OvernightServer {
   }
 
   private async setupDatabase(): Promise<void> {
-    await prisma.$connect();
+    // await prisma.$connect();
   }
 
   public async turnOff(): Promise<void> {
@@ -64,7 +64,7 @@ export class Server extends OvernightServer {
   }
 
   private setupControllers(): void {
-    this.addControllers(makeControllers(prisma));
+    // this.addControllers(makeControllers(prisma));
   }
 
   private async setupDocumentation(): Promise<void> {
