@@ -18,7 +18,7 @@ export class Server extends OvernightServer {
   public async initialize(): Promise<void> {
     this.setupExpress();
     await this.setupDocumentation();
-    await this.setupDatabase();
+    // await this.setupDatabase();
 
     this.setupControllers();
     this.setupErrorHandlers();
@@ -49,7 +49,7 @@ export class Server extends OvernightServer {
   }
 
   public async turnOff(): Promise<void> {
-    await prisma.$disconnect();
+    // await prisma.$disconnect();
   }
 
   private setupControllers(): void {
