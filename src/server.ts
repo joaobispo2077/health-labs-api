@@ -7,6 +7,7 @@ import swaggerUI from 'swagger-ui-express';
 
 import { prisma } from './database/prisma';
 import { makeControllers } from './factories/makeControllers';
+import { handleErrorsMiddleware } from './middlewares/handleErrorsMiddleware';
 import swaggerFile from './swagger.json';
 import { logger } from './utils/logger';
 export class Server extends OvernightServer {
@@ -36,8 +37,12 @@ export class Server extends OvernightServer {
 
   public async turnOn(): Promise<void> {
     this.app.listen(this.port, () =>
-      logger.info(`Server is listening in port: ${this.port}`),
+      logger.info(`Server is listening at port: ${this.port}`),
     );
+  }
+
+  private async setupDatabase(): Promise<void> {
+    await prisma.$connect();
   }
 
   public async turnOff(): Promise<void> {
@@ -53,10 +58,6 @@ export class Server extends OvernightServer {
   }
 
   private setupErrorHandlers(): void {
-    // TODO: this.app.use(handleError);
-  }
-
-  private async setupDatabase(): Promise<void> {
-    await prisma.$connect();
+    this.app.use(handleErrorsMiddleware);
   }
 }
