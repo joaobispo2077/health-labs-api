@@ -1,2 +1,2 @@
 web: yarn start
-release: yarn prod:db:migrate
+release: prod:setup:database

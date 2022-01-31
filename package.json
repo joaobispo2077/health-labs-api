@@ -37,6 +37,8 @@
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npm test -- --coverage",
+    "prod:setup:database": "yarn prod:db:generate && yarn prod:db:migrate",
+    "prod:db:generate": "npx prisma generate --schema=src/database/prisma/schema.prisma",
     "prod:db:migrate": "npx prisma migrate deploy --schema=src/database/prisma/schema.prisma",
     "db:generate": "prisma generate --schema=src/database/prisma/schema.prisma",
     "db:migrate": "npx prisma migrate dev --schema=src/database/prisma/schema.prisma",
