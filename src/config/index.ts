@@ -1,12 +1,8 @@
-const {
-  APP_PORT = 3000,
-  LOG_ENABLED = true,
-  LOG_LEVEL = 'debug',
-} = process.env;
+const { PORT = 3000, LOG_ENABLED = true, LOG_LEVEL = 'debug' } = process.env;
 
 export const config = {
   app: {
-    port: Number(APP_PORT),
+    port: Number(PORT),
   },
   logger: {
     enabled: Boolean(LOG_ENABLED),

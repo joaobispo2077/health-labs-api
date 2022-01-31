@@ -6,6 +6,23 @@
   "repository": "https://github.com/joaobispo2077/dasa-challenge-api.git",
   "author": "João Bispo <joaobispo2077@gmail.com>",
   "license": "MIT",
+  "keywords": [
+    "nodejs",
+    "api",
+    "dasa",
+    "challenge",
+    "typescript",
+    "node",
+    "express",
+    "docker",
+    "docker-compose",
+    "swagger",
+    "postgresql",
+    "heroku"
+  ],
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "node dist/src/main.js",
     "build": "tsc -p tsconfig-build.json",
