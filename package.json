@@ -26,6 +26,7 @@
   "scripts": {
     "start": "node dist/src/main.js",
     "build": "tsc -p tsconfig-build.json",
+    "prebuild": "yarn prod:db:generate",
     "dev": "ts-node-dev --exit-child --inspect --transpile-only --ignore-watch node_modules --respawn src/main.ts",
     "commit:lint": "lint-staged",
     "lint": "yarn lint:check && yarn style:check ",
@@ -37,7 +38,6 @@
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npm test -- --coverage",
-    "prod:setup:database": "yarn prod:db:generate && yarn prod:db:migrate",
     "prod:db:generate": "npx prisma generate --schema=src/database/prisma/schema.prisma",
     "prod:db:migrate": "npx prisma migrate deploy --schema=src/database/prisma/schema.prisma",
     "db:generate": "prisma generate --schema=src/database/prisma/schema.prisma",
