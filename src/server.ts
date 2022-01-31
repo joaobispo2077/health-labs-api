@@ -29,6 +29,9 @@ export class Server extends OvernightServer {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(expressPino({ logger }));
     this.app.use(cors({ origin: '*' }));
+    this.app.use('/ready', (_, res) =>
+      res.json({ message: 'Server is ready' }),
+    );
   }
 
   public getApp(): Application {

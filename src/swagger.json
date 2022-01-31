@@ -9,6 +9,31 @@
     }
   },
   "paths": {
+    "/ready": {
+      "get": {
+        "tags": ["System"],
+        "summary": "Returns message if system is ready",
+        "description": "Returns is ready message",
+        "operationId": "getReady",
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/laboratories": {
       "post": {
         "tags": ["Laboratories"],
