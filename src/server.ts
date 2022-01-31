@@ -5,6 +5,7 @@ import express, { Application } from 'express';
 import expressPino from 'express-pino-logger';
 import swaggerUI from 'swagger-ui-express';
 
+import packageJSON from '../package.json';
 import { prisma } from './database/prisma';
 import { makeControllers } from './factories/makeControllers';
 import { handleErrorsMiddleware } from './middlewares/handleErrorsMiddleware';
@@ -29,8 +30,18 @@ export class Server extends OvernightServer {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(expressPino({ logger }));
     this.app.use(cors({ origin: '*' }));
-    this.app.use('/ready', (_, res) =>
-      res.json({ message: 'Server is ready' }),
+    this.app.use('/ready', (req, res) =>
+      res.json({
+        message: 'Server is ready',
+      }),
+    );
+    this.app.use('/version', (_, res) =>
+      res.json({
+        name: packageJSON.name,
+        author: packageJSON.author,
+        version: packageJSON.version,
+        description: packageJSON.description,
+      }),
     );
   }
 

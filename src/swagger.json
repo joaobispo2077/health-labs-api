@@ -34,6 +34,40 @@
         }
       }
     },
+    "/version": {
+      "get": {
+        "tags": ["System"],
+        "summary": "Returns version of the system",
+        "description": "Returns version of the system",
+        "operationId": "getVersion",
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "author": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/laboratories": {
       "post": {
         "tags": ["Laboratories"],
