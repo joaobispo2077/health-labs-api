@@ -8,4 +8,4 @@ RUN yarn install
 
 COPY . .
 
-CMD ["./scripts/start.sh"]
+ENTRYPOINT ["sh", "./scripts/start.sh"]
