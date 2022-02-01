@@ -1,5 +1,5 @@
 #!/bin/bash
 
- yarn db:generate
- yarn db:migrate
- yarn dev
+yarn db:generate
+yarn db:migrate
+yarn dev
