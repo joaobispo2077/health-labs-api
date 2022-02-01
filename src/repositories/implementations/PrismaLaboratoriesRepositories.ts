@@ -12,7 +12,7 @@ export class PrismaLaboratoriesRepositories
   async findAll(): Promise<Laboratory[]> {
     const laboratories = await this.prisma.laboratory.findMany({
       where: {
-        status: 'ativo',
+        status: LaboratoryStatus.ACTIVE,
       },
     });
 

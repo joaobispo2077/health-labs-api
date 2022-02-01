@@ -23,4 +23,14 @@ export class PrismaExamsRepositories implements ExamsRepositories {
       status: newExam.status as ExamStatus,
     };
   }
+
+  async findAll(): Promise<Exam[]> {
+    const exams = await this.prisma.exam.findMany({
+      where: {
+        status: ExamStatus.ACTIVE,
+      },
+    });
+
+    return exams as Exam[];
+  }
 }
