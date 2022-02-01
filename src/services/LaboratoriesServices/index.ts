@@ -21,4 +21,8 @@ export class LaboratoriesServices {
 
     return newLaboratory;
   }
+
+  async findAll(): Promise<Laboratory[]> {
+    return await this.laboratoriesRepositories.findAll();
+  }
 }

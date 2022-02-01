@@ -28,6 +28,27 @@
             "description": "Created"
           }
         }
+      },
+      "get": {
+        "tags": ["Laboratories"],
+        "summary": "Get all laboratories ",
+        "description": "Get all laboratories active",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "array": {
+                    "items": {
+                      "$ref": "#/components/LaboratoryOutput"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -123,6 +144,29 @@
         }
       },
       "example": {
+        "name": "Laboratório Paulista",
+        "address": "Rua Paulista, 100",
+        "status": "ativo"
+      }
+    },
+    "LaboratoryOutput": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "id": 1,
         "name": "Laboratório Paulista",
         "address": "Rua Paulista, 100",
         "status": "ativo"

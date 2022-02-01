@@ -1,4 +1,4 @@
-import { Controller, Post } from '@overnightjs/core';
+import { Controller, Get, Post } from '@overnightjs/core';
 import { RequestHandler } from 'express';
 
 import { BaseController } from '.';
@@ -28,5 +28,13 @@ export class LaboratoriesControllers extends BaseController {
 
     logger.debug(`Laboratory created: ${newLaboratory.id}`);
     return response.status(201).json(newLaboratory);
+  };
+
+  @Get('')
+  findAll: RequestHandler = async (request, response) => {
+    const laboratories = await this.laboratoriesServices.findAll();
+
+    logger.debug(`Laboratories found: ${laboratories}`);
+    return response.status(200).json(laboratories);
   };
 }

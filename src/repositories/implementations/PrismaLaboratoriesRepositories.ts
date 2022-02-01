@@ -9,6 +9,16 @@ export class PrismaLaboratoriesRepositories
   implements LaboratoriesRepositories
 {
   constructor(private readonly prisma: PrismaClient) {}
+  async findAll(): Promise<Laboratory[]> {
+    const laboratories = await this.prisma.laboratory.findMany({
+      where: {
+        status: 'ativo',
+      },
+    });
+
+    return laboratories as Laboratory[];
+  }
+
   async create({
     name,
     address,
