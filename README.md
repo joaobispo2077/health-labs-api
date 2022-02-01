@@ -57,22 +57,33 @@ Esse é um teste técnico realizado para o processo seletivo da [DASA](https://d
 ## 🚀 Como rodar o projeto?
 
 - Copie o arquivo o arquivo `.env.example` para um novo chamado `.env` e preencha suas variáveis ambientes. Para copiar você pode executar o comando:
+
 ```bash
 cp .env.example .env
 ```
 
+> Tenha certeza de no formato da String de conexão do POSTGREQSQL `postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA`, você tenha trocado a palavra `HOST` pelo nome do serviço de banco de dados no docker-compose, chamado `database`.
+
 - Para assegurar que caso você tente executar o projeto fora do container localmente, use a mesma versão do Node que o projeto utiliza, antes de rodar um script do projeto, rode o comando:
+
 ```bash
 nvm use
 ```
-> Caso não conheça o Node Version Manager (NVM), você pode saber mais e baixar para MacOS e Linux por meio desse link [NVM](https://github.com/nvm-sh/nvm#about) e para Windows você pode utilizar o [Nvm For Windows](https://github.com/coreybutler/nvm-windows#overview). Recomende que instale-o com algum gerenciado de pacotes do sistema operacional como o [Homebrew para MacOS](https://brew.sh/), [Chocolatey para Windows](https://chocolatey.org/), e APT ou semelhante para distribuições linux. Esse comando acessará o arquivo .nvmrc e instalará a versão do Node utilizada no projeto.
 
+> Caso não conheça o Node Version Manager (NVM), você pode saber mais e baixar para MacOS e Linux por meio desse link [NVM](https://github.com/nvm-sh/nvm#about) e para Windows você pode utilizar o [Nvm For Windows](https://github.com/coreybutler/nvm-windows#overview). Recomende que instale-o com algum gerenciado de pacotes do sistema operacional como o [Homebrew para MacOS](https://brew.sh/), [Chocolatey para Windows](https://chocolatey.org/), e APT ou semelhante para distribuições linux. Esse comando acessará o arquivo .nvmrc e instalará a versão do Node utilizada no projeto.
 
 - Rode o comando `npm run start:dev` ou `yarn start:dev` para subir o container da aplicação em ambiente de Desenvolvimento.
 
-> Se estiver utilizando WSL, verifique o IP do seu WSL para poder colocar como HOST na variável ambiente DATABASE_URL no arquivo `.env`.
-
 Para ter certeza que o projeto está rodando, acesse o endereço `http://localhost:${PORT}/docs` e veja a documentação swagger do projeto.
+
+### Problemas comuns com o localhost
+
+#### Banco de dados
+
+É comum no MacOS ou no Windows WSL o HOST se associar ao IP dinâmico, ou seja, o IP que você está utilizando para acessar o computador ao invés do localhost. Existem duas alternativas para contornar esse problema:
+
+- Se estiver utilizando WSL, verifique o IP `hostname -I | awk '{print $1}'` do seu WSL para poder colocar como HOST na variável ambiente DATABASE_URL no arquivo `.env`.
+- Se estiver utilizando o MacOS, verifique o IP `ipconfig getifaddr en0` do seu Mac para poder colocar como HOST na variável ambiente DATABASE_URL no arquivo `.env`.
 
 ### Como rodar os testes localmente
 

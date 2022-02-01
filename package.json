@@ -29,7 +29,7 @@
     "start": "node dist/src/main.js",
     "build": "tsc -p tsconfig-build.json",
     "prebuild": "yarn prod:db:generate",
-    "start:dev": "docker compose up",
+    "start:dev": "docker compose up --build",
     "dev": "ts-node-dev --exit-child --inspect --transpile-only --ignore-watch node_modules --respawn src/main.ts",
     "commit:lint": "lint-staged",
     "lint": "yarn lint:check && yarn style:check ",
