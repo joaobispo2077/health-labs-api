@@ -26,10 +26,28 @@
         "responses": {
           "201": {
             "description": "Created"
-          },
-          "409": {
-            "description": "Laboratory already exists!"
           }
+        }
+      }
+    }
+  },
+  "/exams": {
+    "post": {
+      "tags": ["Exams"],
+      "summary": "Create an exam",
+      "description": "Create a new exam",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/ExamInput"
+            }
+          }
+        }
+      },
+      "responses": {
+        "201": {
+          "description": "Created"
         }
       }
     }
@@ -108,6 +126,21 @@
         "name": "Laboratório Paulista",
         "address": "Rua Paulista, 100",
         "status": "ativo"
+      }
+    },
+    "ExamInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "name": "Exame de sangue",
+        "type": "analise clinica"
       }
     }
   }

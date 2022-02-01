@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+import 'express-async-errors';
 import { Server as OvernightServer } from '@overnightjs/core';
 import cors from 'cors';
 import express, { Application } from 'express';
@@ -11,6 +11,7 @@ import { makeControllers } from './factories/makeControllers';
 import { handleErrorsMiddleware } from './middlewares/handleErrorsMiddleware';
 import swaggerFile from './swagger.json';
 import { logger } from './utils/logger';
+
 export class Server extends OvernightServer {
   constructor(private port = 3000) {
     super();
