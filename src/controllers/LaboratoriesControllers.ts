@@ -24,7 +24,6 @@ export class LaboratoriesControllers extends BaseController {
     const newLaboratory = await this.laboratoriesServices.create({
       name,
       address,
-      status,
     });
 
     logger.debug(`Laboratory created: ${newLaboratory.id}`);

@@ -10,16 +10,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum LaboratoryStatus {
-  ativo
-  inativo
-}
-
 model Laboratory {
-  id      String           @id @default(uuid())
+  id      String @id @default(uuid())
   name    String
   address String
-  status  LaboratoryStatus
+  status  String
 
   @@map("laboratory")
 }

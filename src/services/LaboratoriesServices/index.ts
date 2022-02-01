@@ -1,6 +1,8 @@
 import { CreateLaboratoryDTO } from '@src/dtos/LaboratoriesDTOS';
-import { Laboratory } from '@src/entities/Laboratory';
+import { Laboratory, LaboratoryStatus } from '@src/entities/Laboratory';
 import { LaboratoriesRepositories } from '@src/repositories/LaboratoriesRepositories';
+import { MakePartial } from '@src/utils/generics/MakePartial';
+import { logger } from '@src/utils/logger';
 
 export class LaboratoriesServices {
   constructor(private laboratoriesRepositories: LaboratoriesRepositories) {}
@@ -8,13 +10,14 @@ export class LaboratoriesServices {
   async create({
     name,
     address,
-    status,
-  }: CreateLaboratoryDTO): Promise<Laboratory> {
+  }: MakePartial<CreateLaboratoryDTO, 'status'>): Promise<Laboratory> {
     const newLaboratory = await this.laboratoriesRepositories.create({
       name,
       address,
-      status,
+      status: LaboratoryStatus.ACTIVE,
     });
+
+    logger.debug(`Laboratory created: ${newLaboratory}`);
 
     return newLaboratory;
   }
