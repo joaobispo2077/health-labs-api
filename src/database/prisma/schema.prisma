@@ -23,6 +23,7 @@ model Laboratory {
 model Exam {
   id             String           @id @default(uuid())
   name           String
+  type           String?
   status         String
   laboratoryExam LaboratoryExam[]
 
@@ -31,7 +32,6 @@ model Exam {
 
 model LaboratoryExam {
   id           String @id @default(uuid())
-  status       String
   laboratoryId String
   examId       String
 
