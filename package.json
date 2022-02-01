@@ -21,7 +21,9 @@
     "heroku"
   ],
   "engines": {
-    "node": "16.x"
+    "node": "16.x",
+    "npm": "8.1.x",
+    "yarn": "1.22.5"
   },
   "scripts": {
     "start": "node dist/src/main.js",
