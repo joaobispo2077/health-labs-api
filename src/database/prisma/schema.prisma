@@ -18,3 +18,11 @@ model Laboratory {
 
   @@map("laboratory")
 }
+
+model Exam {
+  id     String @id @default(uuid())
+  name   String
+  status String
+
+  @@map("exam")
+}
