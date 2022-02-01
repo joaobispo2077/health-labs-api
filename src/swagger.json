@@ -9,65 +9,6 @@
     }
   },
   "paths": {
-    "/ready": {
-      "get": {
-        "tags": ["System"],
-        "summary": "Returns message if system is ready",
-        "description": "Returns is ready message",
-        "operationId": "getReady",
-        "responses": {
-          "200": {
-            "description": "Successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/version": {
-      "get": {
-        "tags": ["System"],
-        "summary": "Returns version of the system",
-        "description": "Returns version of the system",
-        "operationId": "getVersion",
-        "responses": {
-          "200": {
-            "description": "Successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    },
-                    "author": {
-                      "type": "string"
-                    },
-                    "version": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/laboratories": {
       "post": {
         "tags": ["Laboratories"],
@@ -93,6 +34,65 @@
       }
     }
   },
+  "/ready": {
+    "get": {
+      "tags": ["System"],
+      "summary": "Returns message if system is ready",
+      "description": "Returns is ready message",
+      "operationId": "getReady",
+      "responses": {
+        "200": {
+          "description": "Successful",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/version": {
+    "get": {
+      "tags": ["System"],
+      "summary": "Returns version of the system",
+      "description": "Returns version of the system",
+      "operationId": "getVersion",
+      "responses": {
+        "200": {
+          "description": "Successful",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "author": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
   "components": {
     "LaboratoryInput": {
       "type": "object",
@@ -101,9 +101,6 @@
           "type": "string"
         },
         "address": {
-          "type": "string"
-        },
-        "status": {
           "type": "string"
         }
       },
