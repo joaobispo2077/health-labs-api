@@ -8,6 +8,19 @@ import { logger } from '@src/utils/logger';
 export class ExamsServices {
   constructor(private examsRepositories: ExamsRepositories) {}
 
+  async createMany(exams: CreateExamDTO[]): Promise<number> {
+    const examsWithDefaultStatus = exams.map((exam) => ({
+      ...exam,
+      status: ExamStatus.ACTIVE,
+    }));
+
+    const createdExams = await this.examsRepositories.createMany(
+      examsWithDefaultStatus,
+    );
+
+    return createdExams;
+  }
+
   async create({
     name,
     type,

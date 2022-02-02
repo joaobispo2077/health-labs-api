@@ -41,11 +41,11 @@ Esse é um teste técnico realizado para o processo seletivo da [DASA](https://d
 
 ## Além do sugerido
 
+- ✅ - Implementação do Twelve-Factor App incluindo Graceful Shutdown, Logging, Rate Limiter e etc.
 - ✅ - Padronização de código com o [ESLint](https://eslint.org/) e [Prettier](https://prettier.io/).
 - ✅ - Padronização das mensagens de commit com o conventional-changelog.
 - ✅ - Configuração de git hooks para rodar lint nos arquivos toda vez que é feito um commit.
 - ✅ - Testes unitários com o [Jest](https://jestjs.io/).
-- [ ] - Implementação do Twelve-Factor App incluindo Graceful Shutdown, Logging e etc.
 
 </details>
 

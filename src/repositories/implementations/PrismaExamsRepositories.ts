@@ -1,9 +1,11 @@
+/* eslint-disable no-console */
 import { PrismaClient } from '@prisma/client';
 
 import { ExamsRepositories } from '../ExamsRepositories';
 
 import { CreateExamDTO, UpdateExamDTO } from '@src/dtos/ExamsDTOS';
 import { Exam, ExamStatus, ExamType } from '@src/entities/Exam';
+import { logger } from '@src/utils/logger';
 
 export class PrismaExamsRepositories implements ExamsRepositories {
   constructor(private readonly prisma: PrismaClient) {}
@@ -67,5 +69,15 @@ export class PrismaExamsRepositories implements ExamsRepositories {
     });
 
     return updatedExam as Exam;
+  }
+
+  async createMany(exams: CreateExamDTO[]): Promise<number> {
+    const createdExams = await this.prisma.exam.createMany({
+      data: exams,
+    });
+
+    logger.info(`Created ${createdExams.count} exams.`);
+
+    return createdExams.count;
   }
 }

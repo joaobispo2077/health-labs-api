@@ -273,6 +273,27 @@
         }
       }
     },
+    "/lots/exams": {
+      "post": {
+        "tags": ["Lots"],
+        "summary": "Create lots of new exams",
+        "description": "Create lots of new exam",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/CreateLotsOfExamsInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
     "/ready": {
       "get": {
         "tags": ["System"],
@@ -364,8 +385,7 @@
       },
       "example": {
         "name": "Laboratório Paulista",
-        "address": "Rua Paulista, 300",
-        "status": "inativo"
+        "address": "Rua Paulista, 300"
       }
     },
     "LaboratoryOutput": {
@@ -393,6 +413,7 @@
     },
     "ExamInput": {
       "type": "object",
+      "required": ["name", "type"],
       "properties": {
         "name": {
           "type": "string"
@@ -449,20 +470,39 @@
       }
     },
     "LaboratoyExamCreateOuput": {
-      "id": {
-        "type": "string"
-      },
-      "laboratoryId": {
-        "type": "string"
-      },
-      "examId": {
-        "type": "string"
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "laboratoryId": {
+          "type": "string"
+        },
+        "examId": {
+          "type": "string"
+        }
       },
       "example": {
         "id": "b226113d-ff7f-41e2-ab0d-4919efeb22df",
         "laboratoryId": "c0013d52-f64f-4353-a578-0ddab0872f27",
         "examId": "6d43992a-aa15-4e0a-8ab9-e6dbd7c06315"
       }
+    },
+    "CreateLotsOfExamsInput": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/ExamInput"
+      },
+      "example": [
+        {
+          "name": "Exame de sangue",
+          "type": "analise clinica"
+        },
+        {
+          "name": "Exame de raio x",
+          "type": "imagem"
+        }
+      ]
     }
   }
 }
