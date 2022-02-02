@@ -2248,6 +2248,11 @@ express-pino-logger@^7.0.0:
   dependencies:
     pino-http "^6.0.0"
 
+express-rate-limit@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.npmjs.org/express-rate-limit/-/express-rate-limit-6.2.0.tgz#be644be082d4d5da8c368aed07cef80152f6e218"
+  integrity sha512-q9xfttbPX79HiBsHA4LT3PZEeJR96CJ5/2jloAKSEECMx8XlOOOpjxx6iK/kBw3hFJ8uhx6Q9lCfSGp70yV0tQ==
+
 express@^4.16.3, express@^4.17.2:
   version "4.17.2"
   resolved "https://registry.npmjs.org/express/-/express-4.17.2.tgz"

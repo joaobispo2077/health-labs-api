@@ -9,6 +9,7 @@ import packageJSON from '../package.json';
 import { prisma } from './database/prisma';
 import { makeControllers } from './factories/makeControllers';
 import { handleErrorsMiddleware } from './middlewares/handleErrorsMiddleware';
+import { handleRateLimiterMiddleware } from './middlewares/handleRateLimiterMiddleware';
 import swaggerFile from './swagger.json';
 import { logger } from './utils/logger';
 
@@ -22,6 +23,7 @@ export class Server extends OvernightServer {
     await this.setupDocumentation();
     await this.setupDatabase();
 
+    this.setupMiddlewares();
     this.setupControllers();
     this.setupErrorHandlers();
   }
@@ -62,6 +64,10 @@ export class Server extends OvernightServer {
 
   public async turnOff(): Promise<void> {
     await prisma.$disconnect();
+  }
+
+  private setupMiddlewares(): void {
+    this.app.use(handleRateLimiterMiddleware);
   }
 
   private setupControllers(): void {
