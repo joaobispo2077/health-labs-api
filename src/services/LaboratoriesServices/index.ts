@@ -25,4 +25,8 @@ export class LaboratoriesServices {
   async findAll(): Promise<Laboratory[]> {
     return await this.laboratoriesRepositories.findAll();
   }
+
+  async deleteById(id: string): Promise<Laboratory> {
+    return await this.laboratoriesRepositories.deleteById(id);
+  }
 }

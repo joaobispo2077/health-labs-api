@@ -31,12 +31,12 @@ model Exam {
 }
 
 model LaboratoryExam {
-  id           String @id @default(uuid())
-  laboratoryId String
-  examId       String
+  id           String  @id @default(uuid())
+  laboratoryId String?
+  examId       String?
 
-  exam       Exam       @relation(fields: [examId], references: [id])
-  laboratory Laboratory @relation(fields: [laboratoryId], references: [id])
+  exam       Exam?       @relation(fields: [examId], references: [id])
+  laboratory Laboratory? @relation(fields: [laboratoryId], references: [id])
 
   @@map("laboratoryExam")
 }
