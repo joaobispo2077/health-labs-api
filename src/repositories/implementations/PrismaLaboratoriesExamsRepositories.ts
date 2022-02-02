@@ -10,6 +10,16 @@ export class PrismaLaboratoriesExamsRepositories
 {
   constructor(private readonly prisma: PrismaClient) {}
 
+  async findById(id: string): Promise<LaboratoryExam | null> {
+    const laboratoryExam = await this.prisma.laboratoryExam.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return laboratoryExam as LaboratoryExam | null;
+  }
+
   async create({
     laboratoryId,
     examId,

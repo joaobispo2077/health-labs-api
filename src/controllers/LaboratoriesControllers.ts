@@ -114,4 +114,21 @@ export class LaboratoriesControllers extends BaseController {
     logger.debug(`Laboratory exam associated: ${laboratoryExam}`);
     return response.json(laboratoryExam);
   };
+
+  @Delete(':laboratoryId/exams/:relationId')
+  dissociateExam: RequestHandler = async (request, response) => {
+    const { laboratoryId, relationId } = request.params;
+
+    if (!laboratoryId || !relationId) {
+      throw new UnprocessableEntityError(
+        'Laboratory id and relation id (with exam) in route params are required to this action.',
+      );
+    }
+
+    const laboratoryExam =
+      await this.laboratoriesExamsServices.dissociateLaboratoryExam(relationId);
+
+    logger.debug(`Laboratory exam dissociated: ${laboratoryExam}`);
+    return response.json(laboratoryExam);
+  };
 }
