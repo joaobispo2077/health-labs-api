@@ -20,7 +20,7 @@ Esse é um teste técnico realizado para o processo seletivo da [DASA](https://d
   - `middlewares`: responsável por conter a lógica reaproveitável entre rotas.
 
 <details>
-  <summary>Items do desafio (Clique aqui para expandir)</summary>
+  <summary>Items do desafio - (Clique aqui para expandir e ver o que foi feito)</summary>
 
 ## Funcionalidades
 
@@ -30,7 +30,7 @@ Esse é um teste técnico realizado para o processo seletivo da [DASA](https://d
 
 ## Funcionalidades extras
 
-- [ ] - Possibilidade de executar cadastro, atualização e remoção em lote.
+- ✅ - Possibilidade de executar cadastro, atualização e remoção em lote. (/lots/exams)
 - ✅ - Endpoint que faz a busca por nome do exame e retorna todos os laboratórios associados a esse exame. (/laboratories?examName=<nome do exame>)
 
 ## Diferenciais
@@ -39,13 +39,15 @@ Esse é um teste técnico realizado para o processo seletivo da [DASA](https://d
 - ✅ - Configurar a aplicação para rodar em um container
 - ✅ - Documentação da API
 
-## Além do sugerido
+## Além do sugerido (metas pessoais)
 
 - ✅ - Implementação do Twelve-Factor App incluindo Graceful Shutdown, Logging, Rate Limiter e etc.
 - ✅ - Padronização de código com o [ESLint](https://eslint.org/) e [Prettier](https://prettier.io/).
 - ✅ - Padronização das mensagens de commit com o conventional-changelog.
+- ✅ - Utilizar do padrão DTO (Data Transfer Object) para os objetos de entrada e saída que atravessam camadas.
 - ✅ - Configuração de git hooks para rodar lint nos arquivos toda vez que é feito um commit.
-- ✅ - Testes unitários com o [Jest](https://jestjs.io/).
+- ✅ - Setup de Testes Automatizados com o [Jest](https://jestjs.io/).
+- [ ] - Adição de cache no serviço de busca de laboratórios.
 
 </details>
 
