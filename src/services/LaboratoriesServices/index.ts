@@ -1,4 +1,7 @@
-import { CreateLaboratoryDTO } from '@src/dtos/LaboratoriesDTOS';
+import {
+  CreateLaboratoryDTO,
+  UpdateLaboratoryDTO,
+} from '@src/dtos/LaboratoriesDTOS';
 import { Laboratory, LaboratoryStatus } from '@src/entities/Laboratory';
 import { LaboratoriesRepositories } from '@src/repositories/LaboratoriesRepositories';
 import { NotFoundError } from '@src/utils/errors/NotFoundError';
@@ -42,5 +45,27 @@ export class LaboratoriesServices {
 
     const removedLaboratoy = await this.laboratoriesRepositories.deleteById(id);
     return removedLaboratoy;
+  }
+
+  async updateById({
+    id,
+    name,
+    address,
+    status,
+  }: UpdateLaboratoryDTO): Promise<Laboratory> {
+    const thisLaboratoryExists = await this.findById(id);
+
+    if (!thisLaboratoryExists) {
+      throw new NotFoundError('Laboratory not found.');
+    }
+
+    const updatedLaboratory = await this.laboratoriesRepositories.updateById({
+      id,
+      name,
+      address,
+      status,
+    });
+
+    return updatedLaboratory;
   }
 }

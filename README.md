@@ -80,7 +80,13 @@ nvm use
 
 Se não quiser instalar o NVM, terá de remover a chave "engine" do package.json para executar os scripts do projeto, mas não estará de acordo com os padrões do projeto.
 
-- Rode o comando `npm run start:dev` ou `yarn start:dev` para subir o container da aplicação em ambiente de Desenvolvimento.
+- Para inicializar o container da aplicação em ambiente de desenvolvimento, execute o comando:
+
+```bash
+npm run start:dev
+```
+
+ou use `yarn start:dev`.
 
 Para ter certeza que o projeto está rodando, acesse o endereço `http://localhost:${PORT}/docs` e veja a documentação swagger do projeto.
 

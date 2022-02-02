@@ -38,6 +38,7 @@ export class ExamsControllers extends BaseController {
     logger.debug(`Exams found: ${exams}`);
     return response.status(200).json(exams);
   };
+
   @Delete(':id')
   deleteById: RequestHandler = async (request, response) => {
     const { id } = request.params;

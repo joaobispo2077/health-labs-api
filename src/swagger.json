@@ -70,6 +70,43 @@
             "description": "OK"
           }
         }
+      },
+      "patch": {
+        "tags": ["Laboratories"],
+        "summary": "Update one laboratory by id",
+        "description": "Update one laboratory by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Laboratory id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/LaboratoryUpdateInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/LaboratoryOutput"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/exams": {
@@ -210,6 +247,25 @@
         "name": "Laboratório Paulista",
         "address": "Rua Paulista, 100",
         "status": "ativo"
+      }
+    },
+    "LaboratoryUpdateInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "name": "Laboratório Paulista",
+        "address": "Rua Paulista, 300",
+        "status": "inativo"
       }
     },
     "LaboratoryOutput": {

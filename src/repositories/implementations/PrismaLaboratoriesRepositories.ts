@@ -2,7 +2,10 @@ import { PrismaClient } from '@prisma/client';
 
 import { LaboratoriesRepositories } from '../LaboratoriesRepositories';
 
-import { CreateLaboratoryDTO } from '@src/dtos/LaboratoriesDTOS';
+import {
+  CreateLaboratoryDTO,
+  UpdateLaboratoryDTO,
+} from '@src/dtos/LaboratoriesDTOS';
 import { Laboratory, LaboratoryStatus } from '@src/entities/Laboratory';
 
 export class PrismaLaboratoriesRepositories
@@ -57,5 +60,25 @@ export class PrismaLaboratoriesRepositories
     });
 
     return removedLaboratoy as Laboratory;
+  }
+
+  async updateById({
+    id,
+    name,
+    address,
+    status,
+  }: UpdateLaboratoryDTO): Promise<Laboratory> {
+    const laboratory = await this.prisma.laboratory.update({
+      where: {
+        id,
+      },
+      data: {
+        name,
+        address,
+        status,
+      },
+    });
+
+    return laboratory as Laboratory;
   }
 }
