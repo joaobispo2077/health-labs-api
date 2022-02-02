@@ -1,4 +1,8 @@
-import { CreateExamDTO, UpdateExamDTO } from '@src/dtos/ExamsDTOS';
+import {
+  CreateExamDTO,
+  UpdateExamDTO,
+  UpdateManyExamsDTO,
+} from '@src/dtos/ExamsDTOS';
 import { Exam } from '@src/entities/Exam';
 
 export interface ExamsRepositories {
@@ -9,4 +13,5 @@ export interface ExamsRepositories {
   updateById({ id, name, type, status }: UpdateExamDTO): Promise<Exam>;
   createMany(exams: CreateExamDTO[]): Promise<number>;
   deleteMany(ids: string[]): Promise<number>;
+  updateMany({ idList, data }: UpdateManyExamsDTO): Promise<number>;
 }

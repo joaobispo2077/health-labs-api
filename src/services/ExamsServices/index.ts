@@ -1,4 +1,8 @@
-import { CreateExamDTO, UpdateExamDTO } from '@src/dtos/ExamsDTOS';
+import {
+  CreateExamDTO,
+  UpdateExamDTO,
+  UpdateManyExamsDTO,
+} from '@src/dtos/ExamsDTOS';
 import { Exam, ExamStatus } from '@src/entities/Exam';
 import { ExamsRepositories } from '@src/repositories/ExamsRepositories';
 import { NotFoundError } from '@src/utils/errors/NotFoundError';
@@ -82,5 +86,15 @@ export class ExamsServices {
     );
 
     return deletedExamsQuantity;
+  }
+
+  async updateMany({ idList, data }: UpdateManyExamsDTO): Promise<number> {
+    logger.debug('ExamsServices.updateMany()');
+    const updatedExamsQuantity = await this.examsRepositories.updateMany({
+      idList,
+      data,
+    });
+
+    return updatedExamsQuantity;
   }
 }

@@ -3,7 +3,11 @@ import { PrismaClient } from '@prisma/client';
 
 import { ExamsRepositories } from '../ExamsRepositories';
 
-import { CreateExamDTO, UpdateExamDTO } from '@src/dtos/ExamsDTOS';
+import {
+  CreateExamDTO,
+  UpdateExamDTO,
+  UpdateManyExamsDTO,
+} from '@src/dtos/ExamsDTOS';
 import { Exam, ExamStatus, ExamType } from '@src/entities/Exam';
 import { logger } from '@src/utils/logger';
 
@@ -92,8 +96,21 @@ export class PrismaExamsRepositories implements ExamsRepositories {
       },
     });
 
-    logger.info(`Deleted ${deletedExams.count} exams.`);
-
     return deletedExams.count;
+  }
+
+  async updateMany({ idList, data }: UpdateManyExamsDTO): Promise<number> {
+    const updatedExams = await this.prisma.exam.updateMany({
+      where: {
+        id: {
+          in: idList,
+        },
+      },
+      data,
+    });
+
+    logger.info(`Updated ${updatedExams.count} exams.`);
+
+    return updatedExams.count;
   }
 }

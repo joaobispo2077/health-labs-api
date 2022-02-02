@@ -311,6 +311,25 @@
             "description": "OK"
           }
         }
+      },
+      "patch": {
+        "tags": ["Lots"],
+        "summary": "Update lots of exams",
+        "description": "Update lots of exams",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/UpdateLotsOfExamsInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/ready": {
@@ -532,6 +551,29 @@
         "32c1bbc9-d173-42e7-8bae-e992c2a7b945",
         "6d43992a-aa15-4e0a-8ab9-e6dbd7c06315"
       ]
+    },
+    "UpdateLotsOfExamsInput": {
+      "type": "object",
+      "properties": {
+        "idList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "data": {
+          "$ref": "#/components/ExamUpdateInput"
+        }
+      },
+      "example": {
+        "idList": [
+          "db3ae438-8b91-414f-bf33-9733f768dc0c",
+          "751f8af8-3657-4a64-8846-baf5c28f7691"
+        ],
+        "data": {
+          "status": "inativo"
+        }
+      }
     }
   }
 }

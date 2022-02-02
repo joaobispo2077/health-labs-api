@@ -11,3 +11,8 @@ export interface UpdateExamDTO {
   type?: ExamType;
   status?: ExamStatus;
 }
+
+export interface UpdateManyExamsDTO {
+  idList: string[];
+  data: Omit<UpdateExamDTO, 'id'>;
+}

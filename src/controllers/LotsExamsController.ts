@@ -1,4 +1,4 @@
-import { Controller, Delete, Post } from '@overnightjs/core';
+import { Controller, Delete, Patch, Post } from '@overnightjs/core';
 import { RequestHandler } from 'express';
 
 import { BaseController } from '.';
@@ -7,6 +7,7 @@ import { ExamsServices } from '@src/services/ExamsServices';
 import { logger } from '@src/utils/logger';
 import { CreateManyExamsValidator } from '@src/utils/validations/CreateManyExamsValidator';
 import { DeleteManyExamsValidator } from '@src/utils/validations/DeleteManyExamsValidator';
+import { UpdateManyExamsValidator } from '@src/utils/validations/UpdateManyExamsValidator';
 
 @Controller('lots/exams')
 export class LotsExamsController extends BaseController {
@@ -51,6 +52,24 @@ export class LotsExamsController extends BaseController {
 
     return response.json({
       message: `Deleted with success ${removedExamQuantity} exams.`,
+    });
+  };
+
+  @Patch('')
+  update: RequestHandler = async (request, response) => {
+    logger.info('LotsExamsController.update()');
+    logger.debug('request:', request.body);
+
+    await UpdateManyExamsValidator.validate(request.body, {
+      abortEarly: false,
+    });
+
+    const exams = request.body;
+
+    const updatedExamsQuantity = await this.examsServices.updateMany(exams);
+
+    return response.json({
+      message: `Updated with success ${updatedExamsQuantity} exams.`,
     });
   };
 }
