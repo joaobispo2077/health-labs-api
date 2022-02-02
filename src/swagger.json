@@ -1,14 +1,43 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Documentação da API de laboratórios e exames",
-    "description": "Documentação do Desafio de API da DASA",
+    "title": "Documentation from DASA Challenge API",
+    "description": "This docs is about exams and laboratories",
     "version": "1.0.0",
     "contact": {
       "email": "joaobispo2077@gmail.com"
     }
   },
   "paths": {
+    "/laboratories/{id}/exams": {
+      "post": {
+        "tags": ["Laboratories"],
+        "summary": "Add relationship between laboratory and exam",
+        "description": "Add relationship between laboratory and exam",
+        "operationId": "addExamToLaboratory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Laboratory id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "examId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/laboratories": {
       "post": {
         "tags": ["Laboratories"],
@@ -387,6 +416,22 @@
         "name": "Raio X",
         "type": "imagem",
         "status": "ativo"
+      }
+    },
+    "LaboratoyExamCreateOuput": {
+      "id": {
+        "type": "string"
+      },
+      "laboratoryId": {
+        "type": "string"
+      },
+      "examId": {
+        "type": "string"
+      },
+      "example": {
+        "id": "b226113d-ff7f-41e2-ab0d-4919efeb22df",
+        "laboratoryId": "c0013d52-f64f-4353-a578-0ddab0872f27",
+        "examId": "6d43992a-aa15-4e0a-8ab9-e6dbd7c06315"
       }
     }
   }

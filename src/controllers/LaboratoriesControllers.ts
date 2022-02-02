@@ -3,6 +3,7 @@ import { RequestHandler } from 'express';
 
 import { BaseController } from '.';
 
+import { LaboratoriesExamsServices } from '@src/services/LaboratoriesExamsServices';
 import { LaboratoriesServices } from '@src/services/LaboratoriesServices';
 import { UnprocessableEntityError } from '@src/utils/errors/UnprocessableEntityError';
 import { logger } from '@src/utils/logger';
@@ -11,7 +12,10 @@ import { UpdateLaboratoryValidator } from '@src/utils/validations/UpdateLaborato
 
 @Controller('laboratories')
 export class LaboratoriesControllers extends BaseController {
-  constructor(private readonly laboratoriesServices: LaboratoriesServices) {
+  constructor(
+    private readonly laboratoriesServices: LaboratoriesServices,
+    private readonly laboratoriesExamsServices: LaboratoriesExamsServices,
+  ) {
     super();
   }
 
@@ -81,5 +85,33 @@ export class LaboratoriesControllers extends BaseController {
 
     logger.debug(`Laboratory updated: ${laboratory}`);
     return response.json(laboratory);
+  };
+
+  @Post(':laboratoryId/exams')
+  associateExam: RequestHandler = async (request, response) => {
+    const { laboratoryId } = request.params;
+
+    if (!laboratoryId) {
+      throw new UnprocessableEntityError(
+        'Laboratory id in route params is required to this action.',
+      );
+    }
+
+    const { examId } = request.body;
+
+    if (!examId) {
+      throw new UnprocessableEntityError(
+        'Exam id in request body is required to this action.',
+      );
+    }
+
+    const laboratoryExam =
+      await this.laboratoriesExamsServices.associateLaboratoryExam({
+        laboratoryId: String(laboratoryId),
+        examId: String(examId),
+      });
+
+    logger.debug(`Laboratory exam associated: ${laboratoryExam}`);
+    return response.json(laboratoryExam);
   };
 }
