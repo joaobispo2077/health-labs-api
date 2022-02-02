@@ -38,6 +38,20 @@ export class LaboratoriesControllers extends BaseController {
 
   @Get('')
   findAll: RequestHandler = async (request, response) => {
+    const { examName } = request.query;
+
+    if (examName) {
+      const laboratoriesExams =
+        await this.laboratoriesExamsServices.findAllLaboratoriesThatHaveExamWithName(
+          decodeURI(String(examName)),
+        );
+
+      const laboratories = laboratoriesExams.map(
+        (laboratoryExam) => laboratoryExam.laboratory,
+      );
+      return response.status(200).json(laboratories);
+    }
+
     const laboratories = await this.laboratoriesServices.findAll();
 
     logger.debug(`Laboratories found: ${laboratories}`);

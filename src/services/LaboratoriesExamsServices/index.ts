@@ -59,4 +59,15 @@ export class LaboratoriesExamsServices {
 
     return laboratoryExam;
   }
+
+  async findAllLaboratoriesThatHaveExamWithName(
+    name: string,
+  ): Promise<LaboratoryExam[]> {
+    const laboratoryExams =
+      await this.laboratoriesExamsRepositories.findAllLaboratoriesThatHaveExamWithName(
+        name,
+      );
+
+    return laboratoryExams;
+  }
 }

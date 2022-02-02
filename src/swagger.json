@@ -89,6 +89,14 @@
         "tags": ["Laboratories"],
         "summary": "Get all laboratories ",
         "description": "Get all laboratories active",
+        "parameters": [
+          {
+            "name": "examName",
+            "in": "query",
+            "description": "use to search laboratories that has this exam name",
+            "required": false
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",

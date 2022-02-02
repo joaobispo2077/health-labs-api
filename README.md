@@ -20,32 +20,31 @@ Esse é um teste técnico realizado para o processo seletivo da [DASA](https://d
   - `middlewares`: responsável por conter a lógica reaproveitável entre rotas.
 
 <details>
-  <summary>Items do desafio</summary>
+  <summary>Items do desafio (Clique aqui para expandir)</summary>
 
-## Básico
+## Funcionalidades
 
-- [ ] - CRUD de laboratórios
-- [ ] - CRUD de exames
-- [ ] - Relacionamento de N para N entre laboratório e exames com uso de tabela pivot.
-- [ ] - Criação em lote de exames e laboratórios.
+- ✅ - CRUD de laboratórios (/laboratories)
+- ✅ - CRUD de exames (/exams)
+- ✅ - Relacionamento de N para N entre laboratório e exames com uso de tabela pivot. (/laboratories/:id/exams)
 
-## Extra
+## Funcionalidades extras
 
 - [ ] - Possibilidade de executar cadastro, atualização e remoção em lote.
-- [ ] - Endpoint que faz a busca por nome do exame e retorna todos os laboratórios associados a esse exame.
+- ✅ - Endpoint que faz a busca por nome do exame e retorna todos os laboratórios associados a esse exame. (/laboratories?examName=<nome do exame>)
 
 ## Diferenciais
 
-- [ X ] - Publicação do ambiente em um serviço cloud de hospedagens (Heroku, AWS, GCP, etc)
-- [ X ] - Configurar a aplicação para rodar em um container
-- [ X ] - Documentação da API
+- ✅ - Publicação do ambiente em um serviço cloud de hospedagens (Heroku, AWS, GCP, etc)
+- ✅ - Configurar a aplicação para rodar em um container
+- ✅ - Documentação da API
 
 ## Além do sugerido
 
-- [ X ] - Padronização de código com o [ESLint](https://eslint.org/) e [Prettier](https://prettier.io/).
-- [ X ] - Padronização das mensagens de commit com o conventional-changelog.
-- [ X ] - Configuração de git hooks para rodar lint nos arquivos toda vez que é feito um commit.
-- [ X ] - Testes unitários com o [Jest](https://jestjs.io/).
+- ✅ - Padronização de código com o [ESLint](https://eslint.org/) e [Prettier](https://prettier.io/).
+- ✅ - Padronização das mensagens de commit com o conventional-changelog.
+- ✅ - Configuração de git hooks para rodar lint nos arquivos toda vez que é feito um commit.
+- ✅ - Testes unitários com o [Jest](https://jestjs.io/).
 - [ ] - Implementação do Twelve-Factor App incluindo Graceful Shutdown, Logging e etc.
 
 </details>

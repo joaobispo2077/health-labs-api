@@ -51,4 +51,25 @@ export class PrismaLaboratoriesExamsRepositories
 
     return laboratoryExam as LaboratoryExam;
   }
+
+  async findAllLaboratoriesThatHaveExamWithName(
+    name: string,
+  ): Promise<LaboratoryExam[]> {
+    const laboratoryExams = await this.prisma.laboratoryExam.findMany({
+      where: {
+        exam: {
+          name: {
+            contains: name,
+            mode: 'insensitive',
+          },
+        },
+      },
+      include: {
+        laboratory: true,
+        exam: false,
+      },
+    });
+
+    return laboratoryExams as LaboratoryExam[];
+  }
 }

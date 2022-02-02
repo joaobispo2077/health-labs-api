@@ -8,4 +8,7 @@ export interface LaboratoriesExamsRepositories {
   }: AssociateLaboratoryExamDTO): Promise<LaboratoryExam>;
   deleteById(id: string): Promise<LaboratoryExam>;
   findById(id: string): Promise<LaboratoryExam | null>;
+  findAllLaboratoriesThatHaveExamWithName(
+    name: string,
+  ): Promise<LaboratoryExam[]>;
 }
