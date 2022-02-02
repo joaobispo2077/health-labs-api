@@ -1,4 +1,4 @@
-import { CreateExamDTO } from '@src/dtos/ExamsDTOS';
+import { CreateExamDTO, UpdateExamDTO } from '@src/dtos/ExamsDTOS';
 import { Exam, ExamStatus } from '@src/entities/Exam';
 import { ExamsRepositories } from '@src/repositories/ExamsRepositories';
 import { NotFoundError } from '@src/utils/errors/NotFoundError';
@@ -43,5 +43,22 @@ export class ExamsServices {
 
     const removedExam = await this.examsRepositories.deleteById(id);
     return removedExam;
+  }
+
+  async updateById({ id, name, type, status }: UpdateExamDTO): Promise<Exam> {
+    const thisExamExists = await this.findById(id);
+
+    if (!thisExamExists) {
+      throw new NotFoundError('Exam not found.');
+    }
+
+    const updatedExam = await this.examsRepositories.updateById({
+      id,
+      name,
+      type,
+      status,
+    });
+
+    return updatedExam;
   }
 }

@@ -170,6 +170,43 @@
             "description": "OK"
           }
         }
+      },
+      "patch": {
+        "tags": ["Exams"],
+        "summary": "Update one exam by id",
+        "description": "Update one exam by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Exam id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/ExamUpdateInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/ExamOutput"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/ready": {
@@ -308,6 +345,25 @@
         "id": "9f0838a3-14f0-4677-9ffe-2332baed5dfa",
         "name": "Exame de sangue",
         "type": "analise clinica"
+      }
+    },
+    "ExamUpdateInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "name": "Exame de sangue",
+        "type": "analise clinica",
+        "status": "ativo"
       }
     },
     "ExamOutput": {

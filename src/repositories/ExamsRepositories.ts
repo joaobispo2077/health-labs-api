@@ -1,4 +1,4 @@
-import { CreateExamDTO } from '@src/dtos/ExamsDTOS';
+import { CreateExamDTO, UpdateExamDTO } from '@src/dtos/ExamsDTOS';
 import { Exam } from '@src/entities/Exam';
 
 export interface ExamsRepositories {
@@ -6,4 +6,5 @@ export interface ExamsRepositories {
   findAll(): Promise<Exam[]>;
   deleteById(id: string): Promise<Exam>;
   findById(id: string): Promise<Exam | null>;
+  updateById({ id, name, type, status }: UpdateExamDTO): Promise<Exam>;
 }

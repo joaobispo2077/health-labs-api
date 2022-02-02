@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 import { ExamsRepositories } from '../ExamsRepositories';
 
-import { CreateExamDTO } from '@src/dtos/ExamsDTOS';
+import { CreateExamDTO, UpdateExamDTO } from '@src/dtos/ExamsDTOS';
 import { Exam, ExamStatus, ExamType } from '@src/entities/Exam';
 
 export class PrismaExamsRepositories implements ExamsRepositories {
@@ -52,5 +52,20 @@ export class PrismaExamsRepositories implements ExamsRepositories {
     });
 
     return exam as Exam | null;
+  }
+
+  async updateById({ id, name, type, status }: UpdateExamDTO): Promise<Exam> {
+    const updatedExam = await this.prisma.exam.update({
+      where: {
+        id,
+      },
+      data: {
+        name,
+        type,
+        status,
+      },
+    });
+
+    return updatedExam as Exam;
   }
 }

@@ -5,3 +5,9 @@ export interface CreateExamDTO {
   type: ExamType;
   status: ExamStatus;
 }
+export interface UpdateExamDTO {
+  id: string;
+  name?: string;
+  type?: ExamType;
+  status?: ExamStatus;
+}
