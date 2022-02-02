@@ -1,9 +1,10 @@
-import { Controller, Get, Post } from '@overnightjs/core';
+import { Controller, Delete, Get, Post } from '@overnightjs/core';
 import { RequestHandler } from 'express';
 
 import { BaseController } from '.';
 
 import { LaboratoriesServices } from '@src/services/LaboratoriesServices';
+import { UnprocessableEntity } from '@src/utils/errors/UnprocessableEntity';
 import { logger } from '@src/utils/logger';
 import { CreateLaboratoryValidator } from '@src/utils/validations/CreateLaboratoryValidator';
 
@@ -19,7 +20,7 @@ export class LaboratoriesControllers extends BaseController {
       abortEarly: false,
     });
 
-    const { name, address, status } = request.body;
+    const { name, address } = request.body;
 
     const newLaboratory = await this.laboratoriesServices.create({
       name,
@@ -36,5 +37,19 @@ export class LaboratoriesControllers extends BaseController {
 
     logger.debug(`Laboratories found: ${laboratories}`);
     return response.status(200).json(laboratories);
+  };
+
+  @Delete(':id')
+  deleteById: RequestHandler = async (request, response) => {
+    const { id } = request.params;
+
+    if (!id) {
+      throw new UnprocessableEntity('Exam id is required to this action.');
+    }
+
+    const laboratory = await this.laboratoriesServices.deleteById(String(id));
+
+    logger.debug(`Laboratory deleted: ${laboratory}`);
+    return response.status(200).json(laboratory);
   };
 }

@@ -26,4 +26,8 @@ export class ExamsServices {
   async findAll(): Promise<Exam[]> {
     return await this.examsRepositories.findAll();
   }
+
+  async deleteById(id: string): Promise<Exam> {
+    return await this.examsRepositories.deleteById(id);
+  }
 }

@@ -50,45 +50,41 @@
           }
         }
       }
-    }
-  },
-  "/exams": {
-    "post": {
-      "tags": ["Exams"],
-      "summary": "Create an exam",
-      "description": "Create a new exam",
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/ExamInput"
-            }
-          }
-        }
-      },
-      "responses": {
-        "201": {
-          "description": "Created"
-        }
-      }
-    }
-  },
-  "/ready": {
-    "get": {
-      "tags": ["System"],
-      "summary": "Returns message if system is ready",
-      "description": "Returns is ready message",
-      "operationId": "getReady",
-      "responses": {
-        "200": {
-          "description": "Successful",
+    },
+    "/exams": {
+      "post": {
+        "tags": ["Exams"],
+        "summary": "Create an exam",
+        "description": "Create a new exam",
+        "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "message": {
-                    "type": "string"
+                "$ref": "#/components/ExamInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Exams"],
+        "summary": "Get all exams ",
+        "description": "Get all exams active",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "array": {
+                    "items": {
+                      "$ref": "#/components/ExamOutput"
+                    }
                   }
                 }
               }
@@ -96,33 +92,58 @@
           }
         }
       }
-    }
-  },
-  "/version": {
-    "get": {
-      "tags": ["System"],
-      "summary": "Returns version of the system",
-      "description": "Returns version of the system",
-      "operationId": "getVersion",
-      "responses": {
-        "200": {
-          "description": "Successful",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "author": {
-                    "type": "string"
-                  },
-                  "version": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
+    },
+    "/ready": {
+      "get": {
+        "tags": ["System"],
+        "summary": "Returns message if system is ready",
+        "description": "Returns is ready message",
+        "operationId": "getReady",
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/version": {
+      "get": {
+        "tags": ["System"],
+        "summary": "Returns version of the system",
+        "description": "Returns version of the system",
+        "operationId": "getVersion",
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "author": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -153,7 +174,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer"
+          "type": "string"
         },
         "name": {
           "type": "string"
@@ -166,7 +187,7 @@
         }
       },
       "example": {
-        "id": 1,
+        "id": "9f0838a3-14f0-4677-9ffe-2332baed5dfa",
         "name": "Laboratório Paulista",
         "address": "Rua Paulista, 100",
         "status": "ativo"
@@ -175,6 +196,9 @@
     "ExamInput": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },
@@ -183,8 +207,32 @@
         }
       },
       "example": {
+        "id": "9f0838a3-14f0-4677-9ffe-2332baed5dfa",
         "name": "Exame de sangue",
         "type": "analise clinica"
+      }
+    },
+    "ExamOutput": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "id": "32c1bbc9-d173-42e7-8bae-e992c2a7b945",
+        "name": "Raio X",
+        "type": "imagem",
+        "status": "ativo"
       }
     }
   }
