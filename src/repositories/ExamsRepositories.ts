@@ -8,4 +8,5 @@ export interface ExamsRepositories {
   findById(id: string): Promise<Exam | null>;
   updateById({ id, name, type, status }: UpdateExamDTO): Promise<Exam>;
   createMany(exams: CreateExamDTO[]): Promise<number>;
+  deleteMany(ids: string[]): Promise<number>;
 }

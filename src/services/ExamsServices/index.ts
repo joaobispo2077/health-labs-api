@@ -74,4 +74,13 @@ export class ExamsServices {
 
     return updatedExam;
   }
+
+  async deleteMany(idList: string[]): Promise<number> {
+    logger.debug('ExamsServices.deleteMany()');
+    const deletedExamsQuantity = await this.examsRepositories.deleteMany(
+      idList,
+    );
+
+    return deletedExamsQuantity;
+  }
 }

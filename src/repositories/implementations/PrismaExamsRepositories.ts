@@ -80,4 +80,20 @@ export class PrismaExamsRepositories implements ExamsRepositories {
 
     return createdExams.count;
   }
+
+  async deleteMany(idList: string[]): Promise<number> {
+    logger.debug('PrismaExamsRepositories.deleteMany()');
+
+    const deletedExams = await this.prisma.exam.deleteMany({
+      where: {
+        id: {
+          in: idList,
+        },
+      },
+    });
+
+    logger.info(`Deleted ${deletedExams.count} exams.`);
+
+    return deletedExams.count;
+  }
 }

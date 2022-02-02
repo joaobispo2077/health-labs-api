@@ -292,6 +292,25 @@
             "description": "Created"
           }
         }
+      },
+      "delete": {
+        "tags": ["Lots"],
+        "summary": "Delete lots of exams",
+        "description": "Delete lots of exams",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/DeleteLotsOfExamsInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/ready": {
@@ -502,6 +521,16 @@
           "name": "Exame de raio x",
           "type": "imagem"
         }
+      ]
+    },
+    "DeleteLotsOfExamsInput": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "32c1bbc9-d173-42e7-8bae-e992c2a7b945",
+        "6d43992a-aa15-4e0a-8ab9-e6dbd7c06315"
       ]
     }
   }
