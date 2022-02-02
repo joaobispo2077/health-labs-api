@@ -5,4 +5,5 @@ export interface LaboratoriesRepositories {
   create({ name, address, status }: CreateLaboratoryDTO): Promise<Laboratory>;
   findAll(): Promise<Laboratory[]>;
   deleteById(id: string): Promise<Laboratory>;
+  findById(id: string): Promise<Laboratory | null>;
 }

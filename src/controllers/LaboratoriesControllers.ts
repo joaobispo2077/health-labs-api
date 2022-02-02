@@ -4,7 +4,7 @@ import { RequestHandler } from 'express';
 import { BaseController } from '.';
 
 import { LaboratoriesServices } from '@src/services/LaboratoriesServices';
-import { UnprocessableEntity } from '@src/utils/errors/UnprocessableEntity';
+import { UnprocessableEntityError } from '@src/utils/errors/UnprocessableEntityError';
 import { logger } from '@src/utils/logger';
 import { CreateLaboratoryValidator } from '@src/utils/validations/CreateLaboratoryValidator';
 
@@ -44,7 +44,7 @@ export class LaboratoriesControllers extends BaseController {
     const { id } = request.params;
 
     if (!id) {
-      throw new UnprocessableEntity('Exam id is required to this action.');
+      throw new UnprocessableEntityError('Exam id is required to this action.');
     }
 
     const laboratory = await this.laboratoriesServices.deleteById(String(id));

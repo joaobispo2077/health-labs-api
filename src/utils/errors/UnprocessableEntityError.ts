@@ -1,7 +1,7 @@
 import { HttpError } from './HttpError';
 
-export class UnprocessableEntity extends HttpError {
-  public name = 'UnprocessableEntity';
+export class UnprocessableEntityError extends HttpError {
+  public name = 'UnprocessableEntityError';
   public statusCode = 422;
 
   constructor(message: string) {

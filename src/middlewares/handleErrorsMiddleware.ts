@@ -26,8 +26,9 @@ export const handleErrorsMiddleware: ErrorRequestHandler = (
   const isHttpError = error instanceof HttpError;
 
   if (isHttpError) {
-    logger.warn(`Http error: ${error.message}`);
-    return response.status(error.status).json({
+    logger.warn(`Http error message: ${error.message}`);
+    logger.warn(`Http error status: ${error.statusCode}`);
+    return response.status(error.statusCode).json({
       message: error.message,
     });
   }

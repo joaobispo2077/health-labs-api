@@ -9,6 +9,15 @@ export class PrismaLaboratoriesRepositories
   implements LaboratoriesRepositories
 {
   constructor(private readonly prisma: PrismaClient) {}
+  async findById(id: string): Promise<Laboratory | null> {
+    const laboratory = await this.prisma.laboratory.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return (laboratory as Laboratory) || null;
+  }
 
   async findAll(): Promise<Laboratory[]> {
     const laboratories = await this.prisma.laboratory.findMany({
