@@ -49,6 +49,27 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": ["Laboratories"],
+        "summary": "Delete one laboratory by id",
+        "description": "Delete one laboratory by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Laboratory id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/exams": {
