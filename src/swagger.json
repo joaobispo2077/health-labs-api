@@ -346,8 +346,7 @@
       },
       "example": {
         "name": "Laboratório Paulista",
-        "address": "Rua Paulista, 100",
-        "status": "ativo"
+        "address": "Rua Paulista, 100"
       }
     },
     "LaboratoryUpdateInput": {
@@ -395,9 +394,6 @@
     "ExamInput": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string"
-        },
         "name": {
           "type": "string"
         },
@@ -406,7 +402,6 @@
         }
       },
       "example": {
-        "id": "9f0838a3-14f0-4677-9ffe-2332baed5dfa",
         "name": "Exame de sangue",
         "type": "analise clinica"
       }
