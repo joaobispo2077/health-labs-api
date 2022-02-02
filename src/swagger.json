@@ -36,6 +36,33 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": ["Laboratories"],
+        "summary": "Remove relationship between laboratory and exam",
+        "description": "Remove relationship between laboratory and exam",
+        "operationId": "removeExamToLaboratory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Laboratory id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "relationId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/laboratories": {

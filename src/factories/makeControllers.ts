@@ -26,11 +26,14 @@ export const makeLaboratoriesController = (
     laboratoriesRepositories,
   );
 
+  const examsRepositories = new PrismaExamsRepositories(prisma);
   const laboratoriesExamsRepositories = new PrismaLaboratoriesExamsRepositories(
     prisma,
   );
   const laboratoriesExamsServices = new LaboratoriesExamsServices(
     laboratoriesExamsRepositories,
+    laboratoriesRepositories,
+    examsRepositories,
   );
 
   const laboratoriesController = new LaboratoriesControllers(
