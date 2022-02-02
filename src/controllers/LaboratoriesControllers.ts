@@ -44,7 +44,9 @@ export class LaboratoriesControllers extends BaseController {
     const { id } = request.params;
 
     if (!id) {
-      throw new UnprocessableEntityError('Exam id is required to this action.');
+      throw new UnprocessableEntityError(
+        'Laboratory id is required to this action.',
+      );
     }
 
     const laboratory = await this.laboratoriesServices.deleteById(String(id));

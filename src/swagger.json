@@ -112,6 +112,27 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": ["Exams"],
+        "summary": "Delete one exam by id",
+        "description": "Delete one exam by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Exam id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/ready": {

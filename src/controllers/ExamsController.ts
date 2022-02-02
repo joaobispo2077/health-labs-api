@@ -1,9 +1,10 @@
-import { Controller, Get, Post } from '@overnightjs/core';
+import { Controller, Delete, Get, Post } from '@overnightjs/core';
 import { RequestHandler } from 'express';
 
 import { BaseController } from '.';
 
 import { ExamsServices } from '@src/services/ExamsServices';
+import { UnprocessableEntityError } from '@src/utils/errors/UnprocessableEntityError';
 import { logger } from '@src/utils/logger';
 import { CreateExamValidator } from '@src/utils/validations/CreateExamValidator';
 
@@ -36,5 +37,18 @@ export class ExamsControllers extends BaseController {
 
     logger.debug(`Exams found: ${exams}`);
     return response.status(200).json(exams);
+  };
+  @Delete(':id')
+  deleteById: RequestHandler = async (request, response) => {
+    const { id } = request.params;
+
+    if (!id) {
+      throw new UnprocessableEntityError('Exam id is required to this action.');
+    }
+
+    const laboratory = await this.examsServices.deleteById(String(id));
+
+    logger.debug(`Exam deleted: ${laboratory}`);
+    return response.status(200).json(laboratory);
   };
 }

@@ -9,6 +9,7 @@ export class PrismaLaboratoriesRepositories
   implements LaboratoriesRepositories
 {
   constructor(private readonly prisma: PrismaClient) {}
+
   async findById(id: string): Promise<Laboratory | null> {
     const laboratory = await this.prisma.laboratory.findUnique({
       where: {
@@ -16,7 +17,7 @@ export class PrismaLaboratoriesRepositories
       },
     });
 
-    return (laboratory as Laboratory) || null;
+    return laboratory as Laboratory | null;
   }
 
   async findAll(): Promise<Laboratory[]> {
@@ -47,6 +48,7 @@ export class PrismaLaboratoriesRepositories
       status: newLaboratory.status as LaboratoryStatus,
     };
   }
+
   async deleteById(id: string): Promise<Laboratory> {
     const removedLaboratoy = await this.prisma.laboratory.delete({
       where: {

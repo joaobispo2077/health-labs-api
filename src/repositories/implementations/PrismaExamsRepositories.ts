@@ -33,4 +33,24 @@ export class PrismaExamsRepositories implements ExamsRepositories {
 
     return exams as Exam[];
   }
+
+  async deleteById(id: string): Promise<Exam> {
+    const removedExam = await this.prisma.exam.delete({
+      where: {
+        id,
+      },
+    });
+
+    return removedExam as Exam;
+  }
+
+  async findById(id: string): Promise<Exam | null> {
+    const exam = await this.prisma.exam.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return exam as Exam | null;
+  }
 }
