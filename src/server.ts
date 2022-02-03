@@ -44,6 +44,7 @@ export class Server extends OvernightServer {
         author: packageJSON.author,
         version: packageJSON.version,
         description: packageJSON.description,
+        timestamp: new Date().toISOString(),
       }),
     );
   }
