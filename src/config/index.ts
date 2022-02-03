@@ -2,7 +2,7 @@ const {
   PORT = 3000,
   LOG_ENABLED = true,
   LOG_LEVEL = 'debug',
-  MAX_REQUEST_PER_MINUTE = 30,
+  MAX_REQUEST_PER_MINUTE = 50,
 } = process.env;
 
 export const config = {
