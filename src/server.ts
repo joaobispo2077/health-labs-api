@@ -3,6 +3,7 @@ import { Server as OvernightServer } from '@overnightjs/core';
 import cors from 'cors';
 import express, { Application } from 'express';
 import expressPino from 'express-pino-logger';
+import helmet from 'helmet';
 import swaggerUI from 'swagger-ui-express';
 
 import packageJSON from '../package.json';
@@ -33,20 +34,7 @@ export class Server extends OvernightServer {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(expressPino({ logger }));
     this.app.use(cors({ origin: '*' }));
-    this.app.use('/ready', (req, res) =>
-      res.json({
-        message: 'Server is ready',
-      }),
-    );
-    this.app.use('/version', (_, res) =>
-      res.json({
-        name: packageJSON.name,
-        author: packageJSON.author,
-        version: packageJSON.version,
-        description: packageJSON.description,
-        timestamp: new Date().toISOString(),
-      }),
-    );
+    this.app.use(helmet());
   }
 
   public getApp(): Application {
@@ -72,6 +60,22 @@ export class Server extends OvernightServer {
   }
 
   private setupControllers(): void {
+    this.app.use('/ready', (_, res) =>
+      res.json({
+        message: 'Server is ready',
+      }),
+    );
+
+    this.app.use('/version', (_, res) =>
+      res.json({
+        name: packageJSON.name,
+        author: packageJSON.author,
+        version: packageJSON.version,
+        description: packageJSON.description,
+        timestamp: new Date().toISOString(),
+      }),
+    );
+
     this.addControllers(makeControllers(prisma));
   }
 
