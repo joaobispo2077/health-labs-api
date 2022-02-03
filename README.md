@@ -4,6 +4,8 @@
 
 Esse é um teste técnico realizado para o processo seletivo da [DASA](https://dasa.com.br) pela WA Project.
 
+É possível ver o desafio original nesse link [arquivo de requisitos](./docs/CHALLENGE.md).
+
 ## 🌏 Arquitetura
 
 - Os conceitos de desenvolvimento que levei em consideração foram principalmente o Single Responsibility Principle e o Dependency Inversion Principle do [SOLID](https://en.wikipedia.org/wiki/SOLID) para atingir um baixo acoplamento e alta coesão dentre as camadas do sistema.
@@ -19,8 +21,10 @@ Esse é um teste técnico realizado para o processo seletivo da [DASA](https://d
   - `database`: responsável por conter as configurações do banco de dados, como migrations.
   - `middlewares`: responsável por conter a lógica reaproveitável entre rotas.
 
+## 🎯 Desafio
+
 <details>
-  <summary>Items do desafio - (Clique aqui para expandir e ver o que foi feito)</summary>
+  <summary>Items do desafio - (CLIQUE AQUI para expandir e ver o que foi feito de forma visual resumida)</summary>
 
 ## Funcionalidades
 
@@ -35,9 +39,9 @@ Esse é um teste técnico realizado para o processo seletivo da [DASA](https://d
 
 ## Diferenciais
 
-- ✅ - Publicação do ambiente em um serviço cloud de hospedagens (Heroku, AWS, GCP, etc)
+- ✅ - Publicação do ambiente em um serviço cloud de hospedagens (Heroku, AWS, GCP, etc) - https://dasa-challenge-api.herokuapp.com
 - ✅ - Configurar a aplicação para rodar em um container
-- ✅ - Documentação da API
+- ✅ - Documentação da API - https://dasa-challenge-api.herokuapp.com/docs/
 
 ## Além do sugerido (metas pessoais)
 
@@ -47,7 +51,34 @@ Esse é um teste técnico realizado para o processo seletivo da [DASA](https://d
 - ✅ - Utilizar do padrão DTO (Data Transfer Object) para os objetos de entrada e saída que atravessam camadas.
 - ✅ - Configuração de git hooks para rodar lint nos arquivos toda vez que é feito um commit.
 - ✅ - Setup de Testes Automatizados com o [Jest](https://jestjs.io/).
+- ✅ - Pipeline de CI/CD com Github Actions.
 - [ ] - Adição de cache no serviço de busca de laboratórios.
+
+</details>
+
+## 💻 Tecnologias
+
+Desenvolvi uma API em Node.js usando Typescript como linguagem, Overnightjs com Express para roteamento e servidor, Prisma ORM para a forma de lidar com banco de dados, Jest para testes e Docker para o container.
+
+<details>
+  <summary>Demais tecnologias</summary>
+
+- [⚛ Node.js](https://nodejs.org/en/)
+- [✨ TypeScript](https://www.typescriptlang.org)
+- [📦 Yarn](https://yarnpkg.com)
+- [🐳 Docker](https://www.docker.com)
+- [💾 PostgreSQL](https://www.postgresql.org)
+- [⚡ Express](https://expressjs.com)
+- [📝 Swagger](https://swagger.io)
+- [🧪 Jest](https://jestjs.io)
+- [🔼 Prisma](https://www.npmjs.com/package/prisma)
+- ✒️ Lint
+  - [📦 ESLint](https://eslint.org)
+  - [📦 Prettier](https://prettier.io)
+  - [📦 Editor Config](https://editorconfig.org)
+- 🧲 Lint no commit
+  - [🐶 Husky](https://typicode.github.io/husky/#/)
+  - [📦 Lint staged](https://github.com/okonet/lint-staged)
 
 </details>
 
