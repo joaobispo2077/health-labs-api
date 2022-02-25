@@ -1,7 +1,11 @@
 /* eslint-disable no-console */
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 
-import { ExamsRepositories } from '../ExamsRepositories';
+import {
+  ExamsFindAllResult,
+  ExamsPaginateOptions,
+  ExamsRepositories,
+} from '../ExamsRepositories';
 
 import {
   CreateExamDTO,
@@ -30,14 +34,21 @@ export class PrismaExamsRepositories implements ExamsRepositories {
     };
   }
 
-  async findAll(): Promise<Exam[]> {
-    const exams = await this.prisma.exam.findMany({
-      where: {
-        status: ExamStatus.ACTIVE,
-      },
-    });
+  async findAll(options: ExamsPaginateOptions): Promise<ExamsFindAllResult> {
+    const { skip, take, cursor, where, orderBy } = options;
 
-    return exams as Exam[];
+    const [items, count] = await this.prisma.$transaction([
+      this.prisma.exam.findMany({
+        skip,
+        take,
+        cursor,
+        where,
+        orderBy,
+      }),
+      this.prisma.exam.count({ where }),
+    ]);
+
+    return { count, items: items as Exam[] };
   }
 
   async deleteById(id: string): Promise<Exam> {

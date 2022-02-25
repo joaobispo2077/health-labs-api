@@ -4,7 +4,11 @@ import {
   UpdateManyExamsDTO,
 } from '@src/dtos/ExamsDTOS';
 import { Exam, ExamStatus } from '@src/entities/Exam';
-import { ExamsRepositories } from '@src/repositories/ExamsRepositories';
+import {
+  ExamsFindAllResult,
+  ExamsPaginateOptions,
+  ExamsRepositories,
+} from '@src/repositories/ExamsRepositories';
 import { NotFoundError } from '@src/utils/errors/NotFoundError';
 import { MakePartial } from '@src/utils/generics/MakePartial';
 import { logger } from '@src/utils/logger';
@@ -41,8 +45,18 @@ export class ExamsServices {
     return newExam;
   }
 
-  async findAll(): Promise<Exam[]> {
-    return await this.examsRepositories.findAll();
+  async findAll(options: ExamsPaginateOptions): Promise<ExamsFindAllResult> {
+    const { skip, take, cursor, where, orderBy } = options;
+    return await this.examsRepositories.findAll({
+      where: {
+        ...where,
+        status: ExamStatus.ACTIVE,
+      },
+      skip,
+      take,
+      cursor,
+      orderBy,
+    });
   }
 
   async findById(id: string): Promise<Exam | null> {
