@@ -33,6 +33,15 @@ export class ExamsControllers extends BaseController {
     return response.status(201).json(newExam);
   };
 
+  @Get(':id')
+  findById: RequestHandler = async (request, response) => {
+    const { id } = request.params;
+
+    const exam = await this.examsServices.findById(String(id));
+
+    return response.json(exam);
+  };
+
   @Get('')
   findAll: RequestHandler = async (request, response) => {
     logger.debug(`Params found: ${JSON.stringify(request.query)}`);
