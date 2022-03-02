@@ -3,6 +3,7 @@ import { RequestHandler } from 'express';
 
 import { BaseController } from '.';
 
+import { PaginateOptionsDTO } from '@src/dtos/PaginateOptionsDTO';
 import { ExamsServices } from '@src/services/ExamsServices';
 import { UnprocessableEntityError } from '@src/utils/errors/UnprocessableEntityError';
 import { logger } from '@src/utils/logger';
@@ -34,35 +35,22 @@ export class ExamsControllers extends BaseController {
 
   @Get('')
   findAll: RequestHandler = async (request, response) => {
-    logger.debug(`Params found: ${request.query}`);
-    logger.error(JSON.stringify(request.query));
-    const [range, sort, filter] = [
-      JSON.parse(String(request.query?.range)),
-      JSON.parse(String(request.query?.sort ?? [])),
-      JSON.parse(String(request.query?.filter)),
-    ];
+    logger.debug(`Params found: ${JSON.stringify(request.query)}`);
+    const { range, sort, filter } = request.query;
 
-    const hasOrderBy = Array.isArray(sort) && sort.length === 2;
-    const orderBy = hasOrderBy
-      ? {
-          [sort[0]]: Array(sort)[1],
-        }
-      : {};
-
-    const hasRange = Array.isArray(range) && range.length === 2;
-    const skip = hasRange ? parseInt(range[0]) : undefined;
-    const take = hasRange ? parseInt(range[1]) + 1 : undefined;
-
-    const { items: exams, count } = await this.examsServices.findAll({
-      where: (filter as any) ?? undefined,
-      orderBy,
-      skip,
-      take,
-    });
-
+    const {
+      items: exams,
+      count,
+      skip = 0,
+      take = 0,
+    } = await this.examsServices.findAll({
+      range,
+      sort,
+      filter,
+    } as PaginateOptionsDTO);
     logger.debug(`Exams found: ${exams}`);
 
-    const contentRange = `exams ${skip}-${exams.length.toString()}/${count}`;
+    const contentRange = `exams ${skip}-${take + skip}/${count}`;
     response.setHeader('Content-Range', contentRange);
     response.setHeader('Access-Control-Expose-Headers', 'Content-Range');
     return response.json(exams);

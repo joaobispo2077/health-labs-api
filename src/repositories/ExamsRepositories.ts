@@ -1,27 +1,20 @@
-import { Prisma } from '@prisma/client';
-
 import {
   CreateExamDTO,
   UpdateExamDTO,
   UpdateManyExamsDTO,
 } from '@src/dtos/ExamsDTOS';
+import { PaginateOptionsDTO } from '@src/dtos/PaginateOptionsDTO';
 import { Exam } from '@src/entities/Exam';
-
-export type ExamsPaginateOptions = {
-  skip?: number;
-  take?: number;
-  cursor?: Prisma.ExamWhereUniqueInput;
-  where?: Prisma.ExamWhereInput;
-  orderBy?: Prisma.ExamOrderByWithRelationInput;
-};
 
 export type ExamsFindAllResult = {
   items: Exam[];
   count: number;
+  skip?: number;
+  take?: number;
 };
 export interface ExamsRepositories {
   create({ name, type, status }: CreateExamDTO): Promise<Exam>;
-  findAll(options: ExamsPaginateOptions): Promise<ExamsFindAllResult>;
+  findAll(paginationOptions?: PaginateOptionsDTO): Promise<ExamsFindAllResult>;
   deleteById(id: string): Promise<Exam>;
   findById(id: string): Promise<Exam | null>;
   updateById({ id, name, type, status }: UpdateExamDTO): Promise<Exam>;

@@ -3,10 +3,10 @@ import {
   UpdateExamDTO,
   UpdateManyExamsDTO,
 } from '@src/dtos/ExamsDTOS';
+import { PaginateOptionsDTO } from '@src/dtos/PaginateOptionsDTO';
 import { Exam, ExamStatus } from '@src/entities/Exam';
 import {
   ExamsFindAllResult,
-  ExamsPaginateOptions,
   ExamsRepositories,
 } from '@src/repositories/ExamsRepositories';
 import { NotFoundError } from '@src/utils/errors/NotFoundError';
@@ -45,17 +45,18 @@ export class ExamsServices {
     return newExam;
   }
 
-  async findAll(options: ExamsPaginateOptions): Promise<ExamsFindAllResult> {
-    const { skip, take, cursor, where, orderBy } = options;
+  async findAll(
+    paginateOptions: PaginateOptionsDTO,
+  ): Promise<ExamsFindAllResult> {
+    const filter = JSON.parse(paginateOptions?.filter ?? '{}');
+
+    const forcedFilter = Object.assign({}, filter, {
+      status: ExamStatus.ACTIVE,
+    });
+
     return await this.examsRepositories.findAll({
-      where: {
-        ...where,
-        status: ExamStatus.ACTIVE,
-      },
-      skip,
-      take,
-      cursor,
-      orderBy,
+      ...paginateOptions,
+      filter: JSON.stringify(forcedFilter),
     });
   }
 

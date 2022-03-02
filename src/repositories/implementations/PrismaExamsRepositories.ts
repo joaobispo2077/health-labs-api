@@ -1,19 +1,17 @@
 /* eslint-disable no-console */
 import { Prisma, PrismaClient } from '@prisma/client';
 
-import {
-  ExamsFindAllResult,
-  ExamsPaginateOptions,
-  ExamsRepositories,
-} from '../ExamsRepositories';
+import { ExamsFindAllResult, ExamsRepositories } from '../ExamsRepositories';
 
 import {
   CreateExamDTO,
   UpdateExamDTO,
   UpdateManyExamsDTO,
 } from '@src/dtos/ExamsDTOS';
+import { PaginateOptionsDTO } from '@src/dtos/PaginateOptionsDTO';
 import { Exam, ExamStatus, ExamType } from '@src/entities/Exam';
 import { logger } from '@src/utils/logger';
+import { parsePaginationToPrismaOptions } from '@src/utils/parsers/parsePaginationToPrismaOptions';
 
 export class PrismaExamsRepositories implements ExamsRepositories {
   constructor(private readonly prisma: PrismaClient) {}
@@ -34,21 +32,23 @@ export class PrismaExamsRepositories implements ExamsRepositories {
     };
   }
 
-  async findAll(options: ExamsPaginateOptions): Promise<ExamsFindAllResult> {
-    const { skip, take, cursor, where, orderBy } = options;
+  async findAll(
+    paginationOptions?: PaginateOptionsDTO,
+  ): Promise<ExamsFindAllResult> {
+    const { skip, take, where, orderBy } =
+      parsePaginationToPrismaOptions<Prisma.ExamWhereInput>(paginationOptions);
 
     const [items, count] = await this.prisma.$transaction([
       this.prisma.exam.findMany({
         skip,
         take,
-        cursor,
         where,
         orderBy,
       }),
       this.prisma.exam.count({ where }),
     ]);
 
-    return { count, items: items as Exam[] };
+    return { count, items: items as Exam[], skip, take };
   }
 
   async deleteById(id: string): Promise<Exam> {
