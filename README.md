@@ -62,7 +62,7 @@ Esse é um teste técnico realizado para o processo seletivo da [DASA](https://d
 - ✅ - Pipeline de CI/CD com Github Actions.
 - [ ] - Adição de cache no serviço de busca de laboratórios.
 - [ ] - Paginação no recurso de listagem de exames /exams.
-- [ ] - Comecei a desenvolver um dashboard admnistrativo referente a esse app em [health-labs-admin](https://github.com/joaobispo2077/health-labs-admin).
+- [ ] - Comecei a desenvolver um dashboard administrativo referente a esse app em [health-labs-admin](https://github.com/joaobispo2077/health-labs-admin).
 
 </details>
 
