@@ -1,4 +1,4 @@
-# Desafio Técnico Dasa
+# API de laboratórios
 
 <p align="center">
   <a href="#descrição">Descrição</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -12,7 +12,7 @@
 
 ## Descrição
 
-Esse é um teste técnico realizado para o processo seletivo da [DASA](https://dasa.com.br) pela WA Project.
+Esse projeto é uma API de labarotários de exames.
 
 ## 🌏 Arquitetura
 
@@ -47,7 +47,7 @@ Esse é um teste técnico realizado para o processo seletivo da [DASA](https://d
 
 ## Diferenciais
 
-- ✅ - Publicação do ambiente em um serviço cloud de hospedagens (Heroku, AWS, GCP, etc) - https://dasa-challenge-api.herokuapp.com
+- ✅ - Publicação do ambiente em um serviço cloud de hospedagens (Heroku, AWS, GCP, etc) - https://dasa-challenge-api.herokuapp.com/docs
 - ✅ - Configurar a aplicação para rodar em um container
 - ✅ - Documentação da API - https://dasa-challenge-api.herokuapp.com/docs/
 

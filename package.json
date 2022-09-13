@@ -1,7 +1,7 @@
 {
-  "name": "dasa-challenge-api",
+  "name": "health-labs-api",
   "version": "1.0.0",
-  "description": "Solução para teste técnico da DASA para Desenvolvedor Full Stack",
+  "description": "API de laboratórios e exames",
   "main": "index.js",
   "repository": "https://github.com/joaobispo2077/dasa-challenge-api.git",
   "author": "João Bispo <joaobispo2077@gmail.com>",
