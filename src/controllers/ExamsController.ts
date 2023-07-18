@@ -1,14 +1,14 @@
 import { Controller, Delete, Get, Patch, Post } from '@overnightjs/core';
-import { RequestHandler } from 'express';
-
-import { BaseController } from '.';
-
 import { PaginateOptionsDTO } from '@src/dtos/PaginateOptionsDTO';
 import { ExamsServices } from '@src/services/ExamsServices';
+import { NotFoundError } from '@src/utils/errors/NotFoundError';
 import { UnprocessableEntityError } from '@src/utils/errors/UnprocessableEntityError';
 import { logger } from '@src/utils/logger';
 import { CreateExamValidator } from '@src/utils/validations/CreateExamValidator';
 import { UpdateExamValidator } from '@src/utils/validations/UpdateExamValidator';
+import { RequestHandler } from 'express';
+
+import { BaseController } from '.';
 
 @Controller('exams')
 export class ExamsControllers extends BaseController {
@@ -38,6 +38,10 @@ export class ExamsControllers extends BaseController {
     const { id } = request.params;
 
     const exam = await this.examsServices.findById(String(id));
+
+    if (!exam) {
+      throw new NotFoundError(`Exam with id ${id} not found`);
+    }
 
     return response.json(exam);
   };
